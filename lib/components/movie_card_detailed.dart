@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hmm_movie_review_app/components/rating_row.dart';
+import 'package:hmm_movie_review_app/model/product.dart';
 
 import '../constants.dart';
+import '../model/movie.dart';
 
 class MovieCardDetailed extends StatelessWidget {
   const MovieCardDetailed({
     Key? key,
-    required this.movieLength,
+    required this.movie,
   }) : super(key: key);
 
-  final String movieLength;
-
+  final Movie movie;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,8 +23,8 @@ class MovieCardDetailed extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: Image.asset(
-              'assets/movie_logo.png',
+            child: Image.network(
+              'https://image.tmdb.org/t/p/original/${movie.posterPath!}',
               fit: BoxFit.cover,
               height: 128.h,
               width: 85.w,
@@ -37,13 +38,15 @@ class MovieCardDetailed extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Spiderman: No Way Home',
+                movie.originalTitle!,
                 style: Theme.of(context).textTheme.headline2,
               ),
               SizedBox(
                 height: 14.h,
               ),
-              const RatingRow(),
+              RatingRow(
+                movieRating: movie.voteAverage!,
+              ),
               SizedBox(
                 height: 8.h,
               ),
@@ -71,7 +74,7 @@ class MovieCardDetailed extends StatelessWidget {
               SizedBox(
                 height: 8.h,
               ),
-              Text('length: $movieLength'),
+              Text('length: ${movie.releaseDate}'),
             ],
           )
         ],
