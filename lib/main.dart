@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hmm_movie_review_app/constants.dart';
 import 'package:hmm_movie_review_app/screens/home_screen.dart';
 
 import 'app_theme.dart';

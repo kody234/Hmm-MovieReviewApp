@@ -12,38 +12,40 @@ class Section extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24.w),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const SizedBox(
-            height: 40,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const SizedBox(
+          height: 40,
+        ),
+        Expanded(
+          child: Text(
+            section,
+            style: Theme.of(context).textTheme.headline1,
           ),
-          Expanded(
-            child: Text(
-              section,
-              style: Theme.of(context).textTheme.headline1,
-            ),
-          ),
-          SizedBox(
-            height: 27.h,
-            width: 70.w,
-            child: OutlinedButton(
-              onPressed: press,
-              style: OutlinedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100),
-                ),
+        ),
+        SizedBox(
+          height: 27.h,
+          width: 70.w,
+          child: OutlinedButton(
+            onPressed: press,
+            style: OutlinedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(100),
               ),
+            ),
+            child: Center(
               child: Text(
                 'See more',
-                style: Theme.of(context).textTheme.headline4,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline4
+                    ?.copyWith(fontSize: 12.sp),
               ),
             ),
-          )
-        ],
-      ),
+          ),
+        )
+      ],
     );
   }
 }
