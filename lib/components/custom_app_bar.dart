@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:hmm_movie_review_app/screens/bookmark_screen.dart';
 
 import '../constants.dart';
 
@@ -14,21 +15,13 @@ class CustomAppBar extends StatelessWidget {
     return SliverAppBar(
       leading: Padding(
         padding: EdgeInsets.only(left: 20.w),
-        child: InkWell(
-          onTap: () {
-            Scaffold.of(context).openDrawer();
-          },
-          child: Image(
-            image: Svg(
-              'assets/menu_icon.svg',
-              color: iconColor,
-              size: Size(
-                28.w,
-                28.h,
-              ),
-            ),
-          ),
-        ),
+        child: IconButton(
+            iconSize: 23.sp,
+            color: iconColor,
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            icon: const Icon(Icons.menu_rounded)),
       ),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -41,10 +34,14 @@ class CustomAppBar extends StatelessWidget {
       ),
       backgroundColor: Colors.grey[200],
       actions: [
-        Icon(
-          Icons.notifications_active_outlined,
+        IconButton(
+          icon: const Icon(Icons.bookmark),
           color: iconColor,
-          size: 28.sp,
+          iconSize: 28.sp,
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const BookMarkScreen()));
+          },
         ),
         SizedBox(
           width: 25.w,

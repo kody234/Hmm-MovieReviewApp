@@ -40,7 +40,7 @@ class Section extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .headline4
-                    ?.copyWith(fontSize: 12.sp),
+                    ?.copyWith(fontSize: 14.sp),
               ),
             ),
           ),
