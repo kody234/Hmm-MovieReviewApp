@@ -67,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
     String movieLength = '1h 47m';
     return Consumer<StateManager>(
       builder: (context, stateManager, child) => Scaffold(
-        drawer: CustomDrawer(),
+        drawer: const CustomDrawer(),
         drawerEnableOpenDragGesture: false,
         body: HomeActualScreen(
             popularMovies: popularMovies,

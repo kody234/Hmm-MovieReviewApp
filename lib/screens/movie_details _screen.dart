@@ -129,7 +129,11 @@ class CustomContainer extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (_) => const ListTrailerScreen()));
+                                builder: (_) => ListTrailerScreen(
+                                      trailers: details!['videos']['results'],
+                                      imagePath:
+                                          'https://image.tmdb.org/t/p/original/${movie.backdropPath!}',
+                                    )));
                       },
                       icon: const Icon(Icons.play_circle_fill_sharp),
                       color: Colors.white,
