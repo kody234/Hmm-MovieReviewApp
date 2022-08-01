@@ -2,41 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hmm_movie_review_app/constants.dart';
-
-class CustomBottomNav extends StatefulWidget {
-  CustomBottomNav({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  State<CustomBottomNav> createState() => _CustomBottomNavState();
-  int selectedIndex = 0;
-}
-
-class _CustomBottomNavState extends State<CustomBottomNav> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 50.h,
-      width: double.infinity,
-      color: Colors.white,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: List.generate(
-          navIcons.length,
-          (index) => CustomIcon(
-              icon: navIcons[index].icon,
-              isSelected: widget.selectedIndex == navIcons[index].index,
-              press: () {
-                setState(() {});
-                widget.selectedIndex = navIcons[index].index;
-                print(widget.selectedIndex);
-              }),
-        ),
-      ),
-    );
-  }
-}
+import 'package:hmm_movie_review_app/state_manager/state_manager.dart';
+import 'package:provider/provider.dart';
 
 class CustomIcon extends StatelessWidget {
   const CustomIcon({
@@ -61,6 +28,7 @@ class CustomIcon extends StatelessWidget {
           children: [
             ImageIcon(
               AssetImage(icon),
+              color: iconColor,
             ),
             SizedBox(
               height: 5.h,

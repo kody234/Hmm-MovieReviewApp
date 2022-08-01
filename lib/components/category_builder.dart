@@ -7,29 +7,31 @@ import 'movie_card_detailed.dart';
 class CategoryBuilder extends StatelessWidget {
   const CategoryBuilder({
     Key? key,
+    required this.label2,
   }) : super(key: key);
+
+  final List label2;
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: List.generate(
-        genres.length,
-        (index) => Padding(
-          padding: EdgeInsets.only(right: 8.w),
-          child: Container(
-            height: 16.h,
-            width: 61.w,
-            decoration: BoxDecoration(
-                color: chipColor, borderRadius: BorderRadius.circular(10.r)),
-            child: Center(
-              child: Text(
-                genres[index],
-                style: Theme.of(context).textTheme.headline4,
-              ),
+        children: List.generate(
+      label2.length,
+      (index) => Padding(
+        padding: EdgeInsets.only(left: 10.w),
+        child: Chip(
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          visualDensity: const VisualDensity(horizontal: 0.0, vertical: -4),
+          labelPadding: EdgeInsets.zero,
+          backgroundColor: chipColor,
+          label: Text(
+            label2[index]['name'],
+            style: const TextStyle(
+              color: Colors.black,
             ),
           ),
         ),
       ),
-    );
+    ));
   }
 }

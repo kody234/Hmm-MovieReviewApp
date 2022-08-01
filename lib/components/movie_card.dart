@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hmm_movie_review_app/components/rating_row.dart';
 import 'package:hmm_movie_review_app/model/product.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 import '../model/movie.dart';
 
@@ -31,10 +32,8 @@ class MovieCard extends StatelessWidget {
                 imageUrl:
                     'https://image.tmdb.org/t/p/original${movie.posterPath!}',
                 progressIndicatorBuilder: (context, url, downloadProgress) =>
-                    Center(
-                        child: CircularProgressIndicator(
-                            value: downloadProgress.progress)),
-                errorWidget: (context, url, error) => Icon(
+                    Image.memory(kTransparentImage),
+                errorWidget: (context, url, error) => const Icon(
                   Icons.error,
                   size: 100,
                   color: Colors.red,
