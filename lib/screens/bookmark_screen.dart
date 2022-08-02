@@ -129,6 +129,8 @@ class _BookMarkScreenState extends State<BookMarkScreen> {
                                                 Text(
                                                   savedMovies[index]
                                                       .originalTitle!,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
                                                   textAlign: TextAlign.start,
                                                   style: TextStyle(
                                                       fontSize: 20.sp,

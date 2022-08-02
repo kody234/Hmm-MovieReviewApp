@@ -1,4 +1,5 @@
 import 'package:anim_search_bar/anim_search_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -208,20 +209,95 @@ class CustomDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      contentPadding: EdgeInsets.zero,
       content: Container(
+        padding: EdgeInsets.only(
+          left: 20.w,
+          right: 20.w,
+        ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.r),
         ),
         height: 250.h,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 20.h,
+              height: 10.h,
             ),
-            Text(
-              'About',
-              style: Theme.of(context).textTheme.headline1,
+            Center(
+              child: Text(
+                'About app',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline1!
+                    .copyWith(fontSize: 23.sp),
+              ),
             ),
+            const Divider(
+              thickness: 2,
+            ),
+            Center(
+              child: Text(
+                'It is an app that makes it easy to review popular ,upcoming or old movies.',
+                textAlign: TextAlign.center,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6
+                    ?.copyWith(color: Colors.blueGrey[200]),
+              ),
+            ),
+            SizedBox(
+              height: 5.h,
+            ),
+            Center(
+              child: Text(
+                'Developer details',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline1!
+                    .copyWith(fontSize: 23.sp, color: Colors.green),
+              ),
+            ),
+            const Divider(
+              thickness: 2,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.whatsapp,
+                  color: Colors.green,
+                  size: 30.sp,
+                ),
+                SizedBox(
+                  width: 6.w,
+                ),
+                Text(
+                  '+2349078731359',
+                  style: Theme.of(context).textTheme.headline1,
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'GitHub:',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline1
+                      ?.copyWith(fontSize: 23.sp),
+                ),
+                SizedBox(
+                  width: 6.w,
+                ),
+                Text(
+                  'kody234',
+                  style: Theme.of(context).textTheme.headline1,
+                ),
+              ],
+            )
           ],
         ),
       ),

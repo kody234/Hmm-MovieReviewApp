@@ -21,21 +21,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   late PlayerState _playerState;
   late YoutubeMetaData _videoMetaData;
-  double _volume = 100;
-  bool _muted = false;
-  bool _isPlayerReady = false;
 
-  final List<String> _ids = [
-    'nPt8bK2gbaU',
-    'gQDByCdjUXw',
-    'iLnmTe5Q2Qw',
-    '_WoCV4c6XOE',
-    'KmzdUe0RSJo',
-    '6jZDSSZZxjQ',
-    'p2lYr3vM_1w',
-    '7QUtEmBT_-w',
-    '34_PXCzGw1M',
-  ];
+  bool _isPlayerReady = false;
 
   @override
   void initState() {
@@ -110,6 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
           _isPlayerReady = true;
         },
         onEnded: (data) {
+          SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
           Navigator.pop(context);
         },
       ),
@@ -120,7 +108,10 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(
             'Watch Trailer',
             style: TextStyle(
-                letterSpacing: 1, fontSize: 20.sp, fontWeight: FontWeight.bold),
+              letterSpacing: 1,
+              fontSize: 20.sp,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           backgroundColor: Colors.grey[200],
           foregroundColor: iconColor,
