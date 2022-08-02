@@ -2,8 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive/hive.dart';
 import 'package:hmm_movie_review_app/components/rating_row.dart';
 import 'package:hmm_movie_review_app/components/section.dart';
+import 'package:hmm_movie_review_app/database/local_storage_repository.dart';
 import 'package:hmm_movie_review_app/model/product.dart';
 import 'package:hmm_movie_review_app/screens/casts_screen.dart';
 import 'package:hmm_movie_review_app/screens/list_trailer_screen.dart';
@@ -41,6 +43,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
 
   Map<String, dynamic>? details;
   bool isGottenDetails = false;
+  var box = Hive.box('savedMovies');
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +73,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                   CustomContainer(
                     movie: widget.movie,
                     details: details,
+                    box: box,
                   ),
                 ],
               )
@@ -81,14 +85,25 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
   }
 }
 
-class CustomContainer extends StatelessWidget {
+class CustomContainer extends StatefulWidget {
   const CustomContainer({
     Key? key,
     required this.movie,
     required this.details,
+    required this.box,
   }) : super(key: key);
   final Movie movie;
   final Map<String, dynamic>? details;
+  final Box box;
+
+  @override
+  State<CustomContainer> createState() => _CustomContainerState();
+}
+
+class _CustomContainerState extends State<CustomContainer> {
+  bool isSaved(key) {
+    return widget.box.containsKey(key);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -130,9 +145,10 @@ class CustomContainer extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (_) => ListTrailerScreen(
-                                      trailers: details!['videos']['results'],
+                                      trailers: widget.details!['videos']
+                                          ['results'],
                                       imagePath:
-                                          'https://image.tmdb.org/t/p/original/${movie.backdropPath!}',
+                                          'https://image.tmdb.org/t/p/original/${widget.movie.backdropPath!}',
                                     )));
                       },
                       icon: const Icon(Icons.play_circle_fill_sharp),
@@ -176,17 +192,36 @@ class CustomContainer extends StatelessWidget {
                       width: 198.w,
                       height: 60.h,
                       child: Text(
-                        movie.originalTitle!,
+                        widget.movie.originalTitle!,
                         style: Theme.of(context).textTheme.headline5,
                       ),
                     ),
                     GestureDetector(
                       onTap: () {
-                        print('don');
+                        setState(() {});
+
+                        LocalStorageRepository()
+                            .addMovieToSavedList(widget.box, widget.movie)
+                            .then(
+                              (value) =>
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  backgroundColor: Colors.green,
+                                  content: Text(
+                                    '${widget.movie.title} has been added to favourites',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15.sp),
+                                  ),
+                                ),
+                              ),
+                            );
                       },
                       child: Icon(
-                        Icons.bookmark_border,
-                        color: Colors.black,
+                        isSaved(widget.movie.id)
+                            ? Icons.bookmark
+                            : Icons.bookmark_border,
+                        color: iconColor,
                         size: 30.sp,
                       ),
                     ),
@@ -195,11 +230,11 @@ class CustomContainer extends StatelessWidget {
                 SizedBox(
                   height: 8.h,
                 ),
-                RatingRow(movieRating: movie.voteAverage),
+                RatingRow(movieRating: widget.movie.voteAverage),
                 SizedBox(
                   height: 8.h,
                 ),
-                CategoryBuilder(label2: details!['genres']),
+                CategoryBuilder(label2: widget.details!['genres']),
                 SizedBox(
                   height: 16.h,
                 ),
@@ -208,21 +243,21 @@ class CustomContainer extends StatelessWidget {
                   children: [
                     MovieDetailColumn(
                       title: 'Language',
-                      subTitle: details!['original_language'],
+                      subTitle: widget.details!['original_language'],
                     ),
                     SizedBox(
                       width: 52.w,
                     ),
                     MovieDetailColumn(
                       title: 'Rating',
-                      subTitle: '${movie.voteAverage}',
+                      subTitle: '${widget.movie.voteAverage}',
                     ),
                     SizedBox(
                       width: 52.w,
                     ),
                     MovieDetailColumn(
                       title: 'Release date',
-                      subTitle: details!['release_date'],
+                      subTitle: widget.details!['release_date'],
                     ),
                   ],
                 ),
@@ -237,7 +272,7 @@ class CustomContainer extends StatelessWidget {
                   height: 6.h,
                 ),
                 Text(
-                  movie.overview ?? '',
+                  widget.movie.overview ?? '',
                   style: Theme.of(context).textTheme.headline4?.copyWith(
                       letterSpacing: 1, wordSpacing: 1, fontSize: 20.sp),
                 ),
@@ -251,8 +286,8 @@ class CustomContainer extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (_) => CastScreen(
-                                    details: details,
-                                    movie: movie,
+                                    details: widget.details,
+                                    movie: widget.movie,
                                   )));
                     }),
                 SizedBox(
@@ -274,7 +309,7 @@ class CustomContainer extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(7.r),
                                 child: CachedNetworkImage(
                                   imageUrl:
-                                      'https://image.tmdb.org/t/p/original/${details!['credits']['cast'][index]['profile_path']}',
+                                      'https://image.tmdb.org/t/p/original/${widget.details!['credits']['cast'][index]['profile_path']}',
                                   progressIndicatorBuilder:
                                       (context, url, downloadProgress) =>
                                           Image.memory(kTransparentImage),
@@ -292,7 +327,8 @@ class CustomContainer extends StatelessWidget {
                                 height: 4.h,
                               ),
                               Text(
-                                details!['credits']['cast'][index]['name'],
+                                widget.details!['credits']['cast'][index]
+                                    ['name'],
                                 textAlign: TextAlign.start,
                                 style: Theme.of(context)
                                     .textTheme
@@ -303,7 +339,8 @@ class CustomContainer extends StatelessWidget {
                                 height: 4.h,
                               ),
                               Text(
-                                details!['credits']['cast'][index]['character'],
+                                widget.details!['credits']['cast'][index]
+                                    ['character'],
                                 textAlign: TextAlign.start,
                                 style: Theme.of(context)
                                     .textTheme
