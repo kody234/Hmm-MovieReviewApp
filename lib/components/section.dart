@@ -26,22 +26,22 @@ class Section extends StatelessWidget {
         ),
         SizedBox(
           height: 27.h,
-          width: 75.w,
+          width: 65.w,
           child: OutlinedButton(
             onPressed: press,
             style: OutlinedButton.styleFrom(
+              padding: EdgeInsets.zero,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.r),
               ),
             ),
-            child: Center(
-              child: Text(
-                'See more',
-                style: Theme.of(context)
-                    .textTheme
-                    .headline4
-                    ?.copyWith(fontSize: 14.sp),
-              ),
+            child: Text(
+              'See more',
+              textAlign: TextAlign.center,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline4
+                  ?.copyWith(fontSize: 14.sp),
             ),
           ),
         )
