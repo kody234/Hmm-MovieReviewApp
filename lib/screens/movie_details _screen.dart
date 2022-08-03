@@ -77,9 +77,9 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                   ),
                 ],
               )
-            : Center(
+            : const Center(
                 child: CircularProgressIndicator(
-                  color: Colors.grey[200],
+                  color: iconColor,
                 ),
               ));
   }

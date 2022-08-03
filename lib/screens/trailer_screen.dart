@@ -116,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Colors.grey[200],
           foregroundColor: iconColor,
         ),
-        body: ListView(
+        body: Column(
           children: [
             player,
           ],
