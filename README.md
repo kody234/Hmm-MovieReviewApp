@@ -18,6 +18,9 @@ Features include:
 # Issues, Feature Requests and Contributing
 Hmm review app is my first completed project. I can wait to start working on my next project, I will appreciate any constructive criticism on the app.
 
+# Disclaimer
+The developer of this application does not have any affiliation with the content providers available.
+
 
 
 
