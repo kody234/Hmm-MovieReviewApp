@@ -5,9 +5,10 @@ Hmm_movie review app is a free and open source mobile application for reviewing 
 ## Features
 
 Features include:
-1.Get updated with popular and upcoming movies
 
-2.Access each movie detail varying from casts, an overview of the movie and much more
+-Get updated with popular and upcoming movies
 
-3.Watch movie trailers
+-Access each movie detail varying from casts, an overview of the movie and much more
+
+-Watch movie trailers
 
