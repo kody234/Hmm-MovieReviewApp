@@ -14,7 +14,7 @@ Features include:
 
 # :camera_flash: ScreenShots
 
-![This is an image](https://photos.app.goo.gl/NkTT6k9rheMeeCiK8)
+![This is an image](https://i.ibb.co/wJmSF3m/Screenshot-20220804-121915.png)
 
 
 
