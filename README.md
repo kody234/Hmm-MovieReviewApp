@@ -1,6 +1,6 @@
 # hmm_movie_review_app
 
-A new Flutter project.
+Hmm_movie review app is a free and open source mobile application for reviewing popular and upcoming movies, 
 
 ## Getting Started
 
