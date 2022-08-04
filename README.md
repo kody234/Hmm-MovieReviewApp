@@ -14,7 +14,7 @@ Features include:
 
 # :camera_flash: ScreenShots
 
-![This is an image](https://i.ibb.co/wJmSF3m/Screenshot-20220804-121915.png)
+<img src="https://i.ibb.co/wJmSF3m/Screenshot-20220804-121915.png" width="200" />
 
 
 
