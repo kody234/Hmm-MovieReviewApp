@@ -14,7 +14,7 @@ Features include:
 
 # :camera_flash: ScreenShots
 
-![This is an image](https://media.giphy.com/media/KnBS9agG32gNMF3cKK/giphy.gif)
+![This is an image]([https://media.giphy.com/media/KnBS9agG32gNMF3cKK/giphy.gif](https://ibb.co/4NcRtx1))
 
 
 
