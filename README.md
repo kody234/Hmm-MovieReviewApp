@@ -14,7 +14,7 @@ Features include:
 
 # :camera_flash: ScreenShots
 
-![This is an image]([<iframe src="https://giphy.com/embed/KnBS9agG32gNMF3cKK" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/love-agressive-passive-KnBS9agG32gNMF3cKK">via GIPHY</a></p>))
+![This is an image](https://media.giphy.com/media/KnBS9agG32gNMF3cKK/giphy.gif)
 
 
 
