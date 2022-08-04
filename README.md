@@ -12,3 +12,5 @@ Features include:
 
 -Watch movie trailers
 
+# :camera_flash: ScreenShots
+
